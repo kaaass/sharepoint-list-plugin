@@ -1,0 +1,42 @@
+{
+  "name": "sharepoint-list-plugin",
+  "version": "1.0.0",
+  "description": "获得 OneDrive 文件下载直链的 TamperMonkey 插件",
+  "author": "KAAAsS",
+  "private": true,
+  "main": "/src/main.js",
+  "keywords": [
+    "tampermonkey",
+    "webpack",
+    "vue",
+    "element-ui",
+    "axios"
+  ],
+  "scripts": {
+    "dev": "dotenv -e .env.dev -- webpack-dev-server --open --config webpack.dev.js",
+    "build": "dotenv -e .env -- webpack --config webpack.prod.js && dotenv -e .env -- node build.js",
+    "build:dev": "dotenv -e .env.dev -- webpack --config webpack.prod.js && dotenv -e .env.dev -- node build.js"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.0.1",
+    "dotenv-cli": "^4.0.0",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^2.0.0",
+    "vue-loader": "^15.9.5",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.4.0"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "element-ui": "^2.14.1",
+    "vue": "^2.6.12"
+  }
+}
