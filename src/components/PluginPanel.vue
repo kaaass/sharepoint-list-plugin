@@ -18,16 +18,20 @@
           </el-table-column>
           <el-table-column
               prop="filename"
-              label="文件名"
-              width="120">
+              label="文件名">
           </el-table-column>
           <el-table-column
-              label="直链"
-              show-overflow-tooltip>
+              label="操作">
             <template slot-scope="scope">
-              <el-link type="primary" v-bind:href="scope.row.directLink" target="_blank">
-                {{ scope.row.directLink }}
-              </el-link>
+              <el-button
+                  type="primary"
+                  size="mini"
+                  @click="handleDownload(scope.row.directLink)">下载
+              </el-button>
+              <el-button
+                  size="mini"
+                  @click="handleCopyLink(scope.row.directLink)">复制链接
+              </el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -135,6 +139,14 @@ export default {
     },
     handleCopyCookie() {
       setClipboard(this.cookie).then(() => {
+        this.$message.success("复制成功！");
+      });
+    },
+    handleDownload(url) {
+      window.open(url, "_blank");
+    },
+    handleCopyLink(url) {
+      setClipboard(url).then(() => {
         this.$message.success("复制成功！");
       });
     }
