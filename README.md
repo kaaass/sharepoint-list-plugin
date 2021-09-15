@@ -2,6 +2,10 @@
 
 获得 OneDrive 文件下载直链的 TamperMonkey 插件。推荐使用 Tampermonkey Beta。
 
+## 通过 Greasy Fork 安装
+
+https://greasyfork.org/zh-CN/scripts/432415-onedrive-%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD%E7%9B%B4%E9%93%BE
+
 ## 构建
 
 ```shell
