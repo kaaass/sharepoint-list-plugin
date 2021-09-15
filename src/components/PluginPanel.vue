@@ -4,6 +4,9 @@
       <div class="sub-container">
         <div class="btn-group-files">
           <el-button type="primary" @click="handleCopyFile()">复制所选链接</el-button>
+          <el-tooltip class="item" effect="dark" content="不太好用，建议优先使用 IDM 或 Aria 推送" placement="top-start">
+            <el-button @click="handleBatchDownload()">批量下载</el-button>
+          </el-tooltip>
           <el-button @click="toggleSelection()">取消选择</el-button>
         </div>
         <el-table
@@ -124,11 +127,14 @@ export default {
         this.$refs.filesTable.clearSelection();
       }
     },
+    getSelectedLinks() {
+      return this.multipleSelection.map(obj => obj.directLink);
+    },
     handleSelectionChange(val) {
       this.multipleSelection = val;
     },
     handleCopyFile() {
-      let links = this.multipleSelection.map(obj => obj.directLink);
+      let links = this.getSelectedLinks();
       if (links.length < 1) {
         this.$message.error("请选择要下载的文件！");
         return;
@@ -149,6 +155,14 @@ export default {
       setClipboard(url).then(() => {
         this.$message.success("复制成功！");
       });
+    },
+    handleBatchDownload() {
+      let links = this.getSelectedLinks();
+      if (links.length < 1) {
+        this.$message.error("请选择要下载的文件！");
+        return;
+      }
+      links.forEach(link => window.open(link, "_blank"));
     }
   }
 }
