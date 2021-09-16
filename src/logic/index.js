@@ -16,5 +16,5 @@ export const setClipboard = selected.setClipboard;
 export const buildEf2File = (fileLists, cookie) => {
     return fileLists
         .map(obj => `<\r\n${obj.directLink}\r\n${cookie}\r\n>`)
-        .join("\r\n");
+        .join("\r\n") + "\r\n\r\n";
 };
