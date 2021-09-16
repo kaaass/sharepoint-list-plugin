@@ -3,11 +3,12 @@
     <el-scrollbar>
       <div class="sub-container">
         <div class="btn-group-files">
-          <el-button type="primary" @click="handleCopyFile()">复制所选链接</el-button>
+          <el-button type="primary" size="mini" @click="handleIdm()">IDM 下载</el-button>
+          <el-button type="primary" size="mini" @click="handleCopyFile()">复制链接</el-button>
           <el-tooltip class="item" effect="dark" content="不太好用，建议优先使用 IDM 或 Aria 推送" placement="top-start">
-            <el-button @click="handleBatchDownload()">批量下载</el-button>
+            <el-button size="mini" @click="handleBatchDownload()">批量下载</el-button>
           </el-tooltip>
-          <el-button @click="toggleSelection()">取消选择</el-button>
+          <el-button size="mini" @click="toggleSelection()">取消选择</el-button>
         </div>
         <el-table
             ref="filesTable"
@@ -79,7 +80,8 @@
 </template>
 
 <script>
-import {getCookie, getFileList, setClipboard} from "@/logic";
+import {buildEf2File, getCookie, getFileList, setClipboard} from "@/logic";
+import {downloadClob} from "@/utils";
 
 export default {
   name: "PluginPanel",
@@ -163,6 +165,11 @@ export default {
         return;
       }
       links.forEach(link => window.open(link, "_blank"));
+    },
+    handleIdm() {
+      let ef2 = buildEf2File(this.multipleSelection, this.cookie);
+      downloadClob(ef2, 'download.ef2');
+      this.$message.success("成功！请在 IDM 中导入此文件下载");
     }
   }
 }

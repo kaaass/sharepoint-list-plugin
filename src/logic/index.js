@@ -5,16 +5,16 @@ import actual from "@/logic/actual.js";
 let selected = actual;
 // 开发环境启用 Mock
 if (isDev) {
-  selected = mock;
+    selected = mock;
 }
 
 // 函数
-const getFileList = selected.getFileList;
-const getCookie = selected.getCookie;
-const setClipboard = selected.setClipboard;
+export const getFileList = selected.getFileList;
+export const getCookie = selected.getCookie;
+export const setClipboard = selected.setClipboard;
 
-export {
-  getFileList,
-  getCookie,
-  setClipboard
-}
+export const buildEf2File = (fileLists, cookie) => {
+    return fileLists
+        .map(obj => `<\r\n${obj.directLink}\r\n${cookie}\r\n>`)
+        .join("\r\n");
+};

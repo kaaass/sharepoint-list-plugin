@@ -44,7 +44,7 @@ const getFileList = async () => {
             let hrefEl = el.getElementsByTagName('D:href');
             let directLink = "";
             if (hrefEl.length >= 1) {
-                directLink = hrefEl[0].textContent;
+                directLink = encodeURI(decodeURI(hrefEl[0].textContent));
             }
             // 获得文件名
             let nameEl = el.getElementsByTagName('D:displayname');
