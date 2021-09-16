@@ -9,11 +9,16 @@
               size="mini"
               @click="handleIdm()">IDM 下载
           </el-button>
-          <el-button type="primary" size="mini" @click="handleCopyFile()">复制链接</el-button>
+          <el-button
+              v-if="this.cookie !== ''"
+              type="primary"
+              size="mini"
+              @click="handleAria()">Aria 下载
+          </el-button>
+          <el-button size="mini" @click="handleCopyFile()">复制链接</el-button>
           <el-tooltip class="item" effect="dark" content="不太好用，建议优先使用 IDM 或 Aria 推送" placement="top-start">
             <el-button size="mini" @click="handleBatchDownload()">批量下载</el-button>
           </el-tooltip>
-          <el-button size="mini" @click="toggleSelection()">取消选择</el-button>
         </div>
         <el-table
             ref="filesTable"
@@ -79,26 +84,34 @@
           </div>
         </div>
       </div>
+      <div class="sub-container">
+        <h3 class="sub-title">设置</h3>
+        <div class="btn-group-files">
+          <el-button @click="handleConfigAria()">配置 Aria RPC</el-button>
+        </div>
+      </div>
       <div class="blank"></div>
     </el-scrollbar>
   </div>
 </template>
 
 <script>
-import {buildEf2File, getCookie, getFileList, setClipboard} from "@/logic";
+import {buildEf2File, getCookie, getFileList, sendAriaRequest, setClipboard} from "@/logic";
 import {downloadClob} from "@/utils";
+import AriaConfigDialog from "@/components/AriaConfigDialog.vue";
 
 export default {
   name: "PluginPanel",
+  components: {AriaConfigDialog},
   data() {
     return {
       fileList: null,
       cookie: null,
-      multipleSelection: []
+      multipleSelection: [],
     }
   },
 
-  mounted: function () {
+  mounted() {
     this.loadFileList();
     this.loadCookie();
   },
@@ -124,15 +137,6 @@ export default {
         console.log("无法读取 Cookie", e);
         this.cookie = "";
       })
-    },
-    toggleSelection(rows) {
-      if (rows) {
-        rows.forEach(row => {
-          this.$refs.filesTable.toggleRowSelection(row);
-        });
-      } else {
-        this.$refs.filesTable.clearSelection();
-      }
     },
     getSelectedLinks() {
       return this.multipleSelection.map(obj => obj.directLink);
@@ -172,9 +176,28 @@ export default {
       links.forEach(link => window.open(link, "_blank"));
     },
     handleIdm() {
-      let ef2 = buildEf2File(this.multipleSelection, this.cookie);
+      let ef2 = buildEf2File(this.getSelectedLinks(), this.cookie);
       downloadClob(ef2, 'download.ef2');
       this.$message.success("成功！请在 IDM 中导入此文件下载");
+    },
+    handleAria() {
+      sendAriaRequest(this.getSelectedLinks(), this.cookie)
+          .then(ret => {
+            // 检查是否成功
+            if (ret === "no_config") {
+              this.$message.warning("还没配置过 Aria RPC，请先配置！");
+              this.$emit('onOpenAriaDialog');
+              return;
+            }
+            this.$message.success("成功推送至 Aria！")
+          })
+          .catch(e => {
+            // 报错
+            this.$message.error(`推送失败！${e}`);
+          });
+    },
+    handleConfigAria() {
+      this.$emit('onOpenAriaDialog');
     }
   }
 }

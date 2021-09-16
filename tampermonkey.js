@@ -8,7 +8,10 @@
 // @match        https://*.sharepoint.com/personal/*
 // @grant        GM_cookie
 // @grant        GM_setClipboard
+// @grant        GM_setValue
+// @grant        GM_getValue
+// @grant        GM_xmlhttpRequest
 // @require      https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js
 // @require      https://unpkg.com/element-ui@2.14.1/lib/index.js
-// @require      https://cdn.bootcdn.net/ajax/libs/axios/0.21.0/axios.min.js
+// @connect      *
 // ==/UserScript==

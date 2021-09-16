@@ -88,8 +88,29 @@ const setClipboard = (val) => {
     });
 }
 
+const KEY_ARIA_CONF = "aria_conf";
+
+/**
+ * 取得 Aria 配置
+ * @returns {{downloadPath: string, apiBase: string, token: string}}
+ */
+const getAriaConfig = () => {
+    let json = GM_getValue(KEY_ARIA_CONF, "null");
+    return JSON.parse(json);
+};
+
+/**
+ * 设置 Aria 配置
+ * @param conf
+ */
+const setAriaConfig = (conf) => {
+    GM_setValue(KEY_ARIA_CONF, JSON.stringify(conf));
+};
+
 export default {
     getFileList,
     getCookie,
-    setClipboard
+    setClipboard,
+    getAriaConfig,
+    setAriaConfig
 }

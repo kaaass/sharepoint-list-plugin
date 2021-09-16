@@ -16,7 +16,7 @@ npm run build
 
 ## Roadmap
 
-- [ ] 支持 Aria2 RPC
+- [x] 支持 Aria2 RPC
 - [x] 支持 IDM 批量下载
 
 ## Credit

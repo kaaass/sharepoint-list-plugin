@@ -1,10 +1,13 @@
 <template>
-  <div class="body" :class="{ 'body-hide': isHide }">
-    <Header/>
-    <PluginPanel/>
-    <div class="btn-toggle" @click="hide">
-      <ArrowIcon/>
+  <div>
+    <div class="body" :class="{ 'body-hide': isHide }">
+      <Header/>
+      <PluginPanel @onOpenAriaDialog="handleOpenAriaDialog"/>
+      <div class="btn-toggle" @click="hide">
+        <ArrowIcon/>
+      </div>
     </div>
+    <AriaConfigDialog ref="ariaDialog"/>
   </div>
 </template>
 
@@ -12,10 +15,11 @@
 import Header from './Header.vue'
 import ArrowIcon from "@/icons/ArrowIcon.vue";
 import PluginPanel from "@/components/PluginPanel.vue";
+import AriaConfigDialog from "@/components/AriaConfigDialog.vue";
 
 export default {
   name: 'PluginDrawer',
-  components: {PluginPanel, ArrowIcon, Header},
+  components: {AriaConfigDialog, PluginPanel, ArrowIcon, Header},
   data() {
     return {
       isHide: true,
@@ -24,6 +28,9 @@ export default {
   methods: {
     hide() {
       this.isHide = !this.isHide
+    },
+    handleOpenAriaDialog() {
+      this.$refs.ariaDialog.open();
     },
   },
 }
