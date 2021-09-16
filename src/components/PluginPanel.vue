@@ -3,7 +3,12 @@
     <el-scrollbar>
       <div class="sub-container">
         <div class="btn-group-files">
-          <el-button type="primary" size="mini" @click="handleIdm()">IDM 下载</el-button>
+          <el-button
+              v-if="this.cookie !== ''"
+              type="primary"
+              size="mini"
+              @click="handleIdm()">IDM 下载
+          </el-button>
           <el-button type="primary" size="mini" @click="handleCopyFile()">复制链接</el-button>
           <el-tooltip class="item" effect="dark" content="不太好用，建议优先使用 IDM 或 Aria 推送" placement="top-start">
             <el-button size="mini" @click="handleBatchDownload()">批量下载</el-button>
