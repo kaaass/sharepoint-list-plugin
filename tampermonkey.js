@@ -14,4 +14,5 @@
 // @require      https://cdn.bootcdn.net/ajax/libs/vue/2.6.12/vue.min.js
 // @require      https://unpkg.com/element-ui@2.14.1/lib/index.js
 // @connect      *
+// @noframes
 // ==/UserScript==
