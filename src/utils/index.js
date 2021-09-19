@@ -1,15 +1,15 @@
 /**
- * load style file
- * @param {String} url 
+ * 加载样式
+ * @param {String} url
  */
 export const loadStyle = (url) => {
-  const head = document.getElementsByTagName('head')[0];
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.type = 'text/css';
-  link.href = url;
-  link.media = 'all';
-  head.appendChild(link);
+    const head = document.getElementsByTagName('head')[0];
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = url;
+    link.media = 'all';
+    head.appendChild(link);
 }
 
 /**
@@ -18,12 +18,12 @@ export const loadStyle = (url) => {
  * @param filename
  */
 export const downloadClob = (content, filename) => {
-  let elDownload = document.createElement('a');
-  elDownload.download = filename;
-  elDownload.style.display = 'none';
-  let blob = new Blob([content]);
-  elDownload.href = URL.createObjectURL(blob);
-  document.body.appendChild(elDownload);
-  elDownload.click();
-  document.body.removeChild(elDownload);
+    let elDownload = document.createElement('a');
+    elDownload.download = filename;
+    elDownload.style.display = 'none';
+    let blob = new Blob([content]);
+    elDownload.href = URL.createObjectURL(blob);
+    document.body.appendChild(elDownload);
+    elDownload.click();
+    document.body.removeChild(elDownload);
 };

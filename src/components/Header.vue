@@ -1,13 +1,14 @@
 <template>
   <div class="header">
     <i class="el-icon-link"></i>
-    <h3>{{AppName}}</h3>
-    <el-tag>v{{AppVersion}}</el-tag>
+    <h3>{{ AppName }}</h3>
+    <el-tag>v{{ AppVersion }}</el-tag>
   </div>
 </template>
 
 <script>
-import { AppName, AppVersion } from '@/config'
+import {AppName, AppVersion} from '@/config'
+
 export default {
   name: 'Header',
   data() {
@@ -23,7 +24,7 @@ export default {
 .header {
   display: flex;
   align-items: center;
-  padding:10px;
+  padding: 10px;
 
   i {
     font-size: 20px;

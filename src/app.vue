@@ -1,12 +1,12 @@
 <template>
   <div class="app">
-    <PluginDrawer />
+    <PluginDrawer/>
   </div>
 </template>
 
 <script>
 import PluginDrawer from '@/components/PluginDrawer.vue'
-import { AppName, AppVersion } from '@/config'
+import {AppName, AppVersion} from '@/config'
 
 export default {
   name: 'app',
