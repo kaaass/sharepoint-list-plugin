@@ -118,13 +118,16 @@ export default {
 
   methods: {
     loadFileList() {
-      getFileList().then(data => {
-        this.fileList = data;
+      getFileList(true).then(data => {
+        const [isNew, fileList] = data;
+        this.fileList = fileList;
         // 全选
-        this.$nextTick(() => {
-          this.$refs.filesTable.clearSelection();
-          this.$refs.filesTable.toggleAllSelection();
-        });
+        if (isNew) {
+          this.$nextTick(() => {
+            this.$refs.filesTable.clearSelection();
+            this.$refs.filesTable.toggleAllSelection();
+          });
+        }
       }).catch(e => {
         console.log("无法读取文件列表", e);
         this.$message.error(`读取文件列表失败！${e}`);

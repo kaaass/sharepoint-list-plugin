@@ -1,9 +1,9 @@
 /**
- * 获得文件列表 Mock
- * @returns {Promise<*[]>}
+ * 获得文件列表
+ * @param allowCache 是否允许缓存
+ * @returns {Promise<(boolean|*[])[]|boolean[]>} [是否新数据, 数据]
  */
-
-const getFileList = async () => {
+const getFileList = async (allowCache) => {
     let ret = [];
     for (let i = 0; i < 20; i++) {
         ret.push({
@@ -11,7 +11,7 @@ const getFileList = async () => {
             directLink: 'https://aaaaaaaaaaaaaaaaaaaa.bbb/ccccc.ddddd?eeeeeeeeeee'
         })
     }
-    return ret;
+    return [true, ret];
 };
 
 /**

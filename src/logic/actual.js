@@ -1,8 +1,12 @@
+let cachedUrl = null,
+    cachedFileList = null;
+
 /**
  * 获得文件列表
- * @returns {Promise<*[]>}
+ * @param allowCache 是否允许缓存
+ * @returns {Promise<(boolean|*[])[]|boolean[]>} [是否新数据, 数据]
  */
-const getFileList = async () => {
+const getFileList = async (allowCache) => {
     let fileList = [];
 
     // 解析路径参数
@@ -10,6 +14,14 @@ const getFileList = async () => {
     let host = url.host;
     let param = new URLSearchParams(url.search);
     let loc = param.get('id');
+
+    // 检查 Cache
+    if (allowCache) {
+        if (url.search === cachedUrl) {
+            console.log("从缓存中解析：", cachedUrl);
+            return [false, cachedFileList];
+        }
+    }
 
     // 请求文件列表
     let response = await fetch(`https://${host}${loc}`, {
@@ -57,7 +69,10 @@ const getFileList = async () => {
         }
     }
 
-    return fileList;
+    // 缓存
+    cachedUrl = url.search;
+    cachedFileList = fileList;
+    return [true, fileList];
 };
 
 /**

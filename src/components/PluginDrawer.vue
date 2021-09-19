@@ -2,7 +2,7 @@
   <div>
     <div class="body" :class="{ 'body-hide': isHide }">
       <Header/>
-      <PluginPanel @onOpenAriaDialog="handleOpenAriaDialog"/>
+      <PluginPanel ref="panel" @onOpenAriaDialog="handleOpenAriaDialog"/>
       <div class="btn-toggle" @click="hide">
         <ArrowIcon/>
       </div>
@@ -27,7 +27,11 @@ export default {
   },
   methods: {
     hide() {
-      this.isHide = !this.isHide
+      this.isHide = !this.isHide;
+      // 打开侧边时重载文件列表
+      if (!this.isHide) {
+        this.$refs.panel.loadFileList();
+      }
     },
     handleOpenAriaDialog() {
       this.$refs.ariaDialog.open();
