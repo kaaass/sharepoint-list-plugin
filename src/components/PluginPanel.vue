@@ -112,12 +112,12 @@ export default {
   },
 
   mounted() {
-    this.loadFileList();
+    this.loadFileList(true);
     this.loadCookie();
   },
 
   methods: {
-    loadFileList() {
+    loadFileList(silent) {
       getFileList(true).then(data => {
         const [isNew, fileList] = data;
         this.fileList = fileList;
@@ -130,7 +130,9 @@ export default {
         }
       }).catch(e => {
         console.log("无法读取文件列表", e);
-        this.$message.error(`读取文件列表失败！${e}`);
+        if (!silent) {
+          this.$message.error(`读取文件列表失败！${e}`);
+        }
       })
     },
     loadCookie() {

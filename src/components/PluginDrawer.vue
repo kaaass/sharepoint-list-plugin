@@ -30,7 +30,7 @@ export default {
       this.isHide = !this.isHide;
       // 打开侧边时重载文件列表
       if (!this.isHide) {
-        this.$refs.panel.loadFileList();
+        this.$refs.panel.loadFileList(false);
       }
     },
     handleOpenAriaDialog() {
