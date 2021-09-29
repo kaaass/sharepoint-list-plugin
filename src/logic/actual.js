@@ -76,20 +76,41 @@ const getFileList = async (allowCache) => {
 };
 
 /**
- * 获得 Cookie
+ * 获得 Cookie 信息
  * @returns {Promise<unknown>}
  */
-const getCookie = () => {
+const getCookieNative = (param) => {
     return new Promise(function (resolve, reject) {
-        GM_cookie.list({name: 'FedAuth'}, (cookie, error) => {
+        GM_cookie.list(param, (cookie, error) => {
             if (error) {
                 reject(error);
                 return;
             }
-            let token = cookie[0].value;
-            resolve(`Cookie: FedAuth=${token}`);
+            console.log(cookie);
+            resolve(cookie[0].value);
         });
     });
+};
+
+/**
+ * 获得 Cookie
+ * @returns {Promise<unknown>}
+ */
+const getCookie = async () => {
+    let host = document.location.host;
+    const cookieKeys = [
+        {name: 'FedAuth', domain: host}, // 防止多站点之间 Cookie 混淆
+        {name: 'CCSInfo', domain: '.sharepoint.com'},
+        {name: 'rtFa', domain: '.sharepoint.com'}
+    ];
+    let cookies = await Promise.all(cookieKeys.map(getCookieNative));
+    let cookie = 'Cookie: ';
+    cookieKeys.forEach((param, idx) => {
+        let value = cookies[idx];
+        cookie += `${param.name}=${value}; `;
+    });
+    console.log(cookies);
+    return cookie;
 };
 
 /**
