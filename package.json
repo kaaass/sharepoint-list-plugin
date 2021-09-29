@@ -1,6 +1,6 @@
 {
   "name": "sharepoint-list-plugin",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "获得 OneDrive 文件下载直链的 TamperMonkey 插件",
   "author": "KAAAsS",
   "private": true,
@@ -15,7 +15,7 @@
   "scripts": {
     "dev": "dotenv -e .env.dev -- webpack-dev-server --open --config webpack.dev.js",
     "build": "dotenv -e .env -- webpack --config webpack.prod.js && dotenv -e .env -- node build.js",
-    "build:dev": "dotenv -e .env.dev -- webpack --config webpack.prod.js && dotenv -e .env.dev -- node build.js"
+    "test": "dotenv -e .env.test -- webpack --config webpack.test.js --watch"
   },
   "license": "MIT",
   "devDependencies": {

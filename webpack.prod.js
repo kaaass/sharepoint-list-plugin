@@ -4,7 +4,7 @@ const common = require('./webpack.common')
 module.exports = merge(common(), {
   mode: 'production',
   externals: {
-    // use @require in header to import vue
+    // 使用 @require 导入依赖
     vue: 'Vue',
     'element-ui': 'element-ui'
   },
