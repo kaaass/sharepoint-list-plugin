@@ -6,6 +6,7 @@
 // @author       KAAAsS
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @match        https://*.sharepoint.com/personal/*
+// @match        https://*.sharepoint.cn/personal/*
 // @grant        GM_cookie
 // @grant        GM_setClipboard
 // @grant        GM_setValue

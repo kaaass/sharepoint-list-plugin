@@ -87,7 +87,11 @@ const getCookieNative = (param) => {
                 return;
             }
             console.log(cookie);
-            resolve(cookie[0].value);
+            if (cookie.length > 0) {
+                resolve(cookie[0].value);
+            } else {
+                resolve(null);
+            }
         });
     });
 };
@@ -100,16 +104,20 @@ const getCookie = async () => {
     let host = document.location.host;
     const cookieKeys = [
         {name: 'FedAuth', domain: host}, // 防止多站点之间 Cookie 混淆
-        {name: 'CCSInfo', domain: '.sharepoint.com'},
-        {name: 'rtFa', domain: '.sharepoint.com'}
+        {name: 'CCSInfo', domain: '.sharepoint.com'}, // 海外版
+        {name: 'rtFa', domain: '.sharepoint.com'},
+        {name: 'CCSInfo', domain: '.sharepoint.cn'}, // 世纪互联
+        {name: 'rtFa', domain: '.sharepoint.cn'},
     ];
     let cookies = await Promise.all(cookieKeys.map(getCookieNative));
     let cookie = 'Cookie: ';
     cookieKeys.forEach((param, idx) => {
         let value = cookies[idx];
-        cookie += `${param.name}=${value}; `;
+        if (value) {
+            cookie += `${param.name}=${value}; `;
+        }
     });
-    console.log(cookies);
+    console.log("获得 Cookie：", cookies);
     return cookie;
 };
 

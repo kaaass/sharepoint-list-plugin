@@ -1,6 +1,6 @@
 {
   "name": "sharepoint-list-plugin",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "获得 OneDrive 文件下载直链的 TamperMonkey 插件",
   "author": "KAAAsS",
   "private": true,
