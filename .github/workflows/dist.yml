@@ -21,7 +21,7 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          key: ${{ hashFiles('**/package.json') }}
             
       - name: Install depends
         run: npm install
