@@ -4,6 +4,7 @@
 // @version      __APP_VERSION__
 // @description  获得 OneDrive 文件下载直链的 TamperMonkey 插件
 // @author       KAAAsS
+// @license      MIT
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @match        https://*.sharepoint.com/personal/*
 // @match        https://*.sharepoint.cn/personal/*
