@@ -4,7 +4,7 @@ import {isDev} from './config'
 import {loadStyle} from './utils'
 import './styles/global.scss'
 
-loadStyle('https://unpkg.com/element-ui@2.14.1/lib/theme-chalk/index.css')
+loadStyle('https://cdn.staticfile.org/element-ui/2.14.1/theme-chalk/index.css')
 
 
 const id = `app_vue_${Date.now()}`
