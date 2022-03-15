@@ -6,8 +6,8 @@
 // @author       KAAAsS
 // @license      MIT
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
-// @match        https://*.sharepoint.com/personal/*
-// @match        https://*.sharepoint.cn/personal/*
+// @match        https://*.sharepoint.com/*
+// @match        https://*.sharepoint.cn/*
 // @grant        GM_cookie
 // @grant        GM_setClipboard
 // @grant        GM_setValue
