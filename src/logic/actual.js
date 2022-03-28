@@ -110,7 +110,7 @@ const getCookie = async () => {
         {name: 'rtFa', domain: '.sharepoint.cn'},
     ];
     let cookies = await Promise.all(cookieKeys.map(getCookieNative));
-    let cookie = 'Cookie: ';
+    let cookie = 'cookie: ';
     cookieKeys.forEach((param, idx) => {
         let value = cookies[idx];
         if (value) {
