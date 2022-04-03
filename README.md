@@ -1,5 +1,7 @@
 # sharepoint-list-plugin
 
+[![Dist](https://github.com/kaaass/sharepoint-list-plugin/actions/workflows/dist.yml/badge.svg)](https://github.com/kaaass/sharepoint-list-plugin/actions/workflows/dist.yml)
+
 获得 OneDrive 文件下载直链的 TamperMonkey 插件。推荐使用 Tampermonkey Beta。
 
 ![Snapshot](snapshot/1.png)
