@@ -58,7 +58,7 @@ const getFileList = async (allowCache) => {
             if (hrefEl.length >= 1) {
                 // Sharepoint 返回中包含 Unicode 字符，需要转义
                 directLink = encodeURI(hrefEl[0].textContent);
-                directLink = directLink.replace('%25', '%');
+                directLink = directLink.replaceAll('%25', '%');
             }
             // 获得文件名
             let nameEl = el.getElementsByTagName('D:displayname');
